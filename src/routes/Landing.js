@@ -111,14 +111,25 @@ function Landing({ className }) {
                 </div>
               </div>
               <div className="row" style={{ marginBottom: '60px' }}>
-                <button
-                  className={`${connected ? 'button-start' : 'button-start button-start--disabled'} m-2`}
-                  type="button"
-                  disabled={!connected}
-                  onClick={redirectToVideoOnConnect}
-                >
-                  Converse comigo
-                </button>
+                {!connected && (
+                  <div
+                    className="button-start button--disabled m-2 "
+                    type="button"
+                  >
+                    <img alt="gif loading" src="https://i.gifer.com/ZKZg.gif" className="gif-loading" />
+                  </div>
+                )}
+
+                {connected && (
+                  <button
+                    className={`${connected ? 'button-start' : 'button-start button-start--disabled'} m-2`}
+                    type="button"
+                    disabled={!connected}
+                    onClick={redirectToVideoOnConnect}
+                  >
+                    Converse comigo
+                  </button>
+                )}
               </div>
               <div className="row">
                 <div>
@@ -141,6 +152,12 @@ Landing.propTypes = {
 };
 
 export default styled(Landing)`
+
+  .gif-loading {
+    width: 25px;
+    height: 25px;
+  }
+
   .fw-bol {
     font-size: 32px;
   }
@@ -169,6 +186,18 @@ export default styled(Landing)`
     color: #ffffff;
     font-weight: 600;
     margin: 0;
+  }
+
+  .button--disabled {
+    border: 1px solid rgb(60, 60, 60);
+    border-radius: 32px;
+    padding:16px 32px;
+    background-color: #E5E5E5;
+    color: #ABABAB;
+    font-weight: 600;
+    margin: 0;
+    text-align: center;
+    cursor: not-allowed;
   }
 
   .button-start--disabled {
